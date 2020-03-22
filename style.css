@@ -1,0 +1,86 @@
+* {
+
+
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  display: grid;
+  height: 100vh;
+
+
+  background-color: aliceblue;
+}
+
+.button {
+
+  font-family: 'arial';
+  padding: 1rem 1.5rem;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  border-radius: 10%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.buttons {
+
+  visibility: visible;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+}
+
+.memory-playing {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto;
+  border: 1px solid rgba(146, 15, 146, 0.925);
+  width: 650px;
+  height: 650px;
+  margin: auto;
+  visibility: hidden;
+
+
+}
+
+#hidden {
+
+  margin-top: auto;
+  margin-bottom: auto;
+  color: rgba(189, 18, 189, 0.925);
+}
+
+
+
+.memory-cards {
+  display: grid;
+  justify-content: center;
+
+  background-color: rgba(189, 18, 189, 0.925);
+  border: 1px solid rgba(109, 11, 109, 0.925);
+  cursor: pointer;
+}
+
+.memory-cards:hover {
+  box-shadow: inset 0px 0px 0px 1px rgba(253, 28, 253, 0.925);
+  ;
+  background-color: rgba(189, 18, 189, 0.582);
+  border: rgba(252, 100, 252, 0.925);
+  1px solid;
+}
+
+
+
+.show {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
+}
