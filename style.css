@@ -15,6 +15,13 @@ body {
   background-color: aliceblue;
 }
 
+h1 {
+  margin: auto;
+  padding: 2%;
+  text-align: center;
+  visibility: visible;
+}
+
 .button {
 
   font-family: 'arial';
@@ -36,45 +43,78 @@ body {
 
 }
 
-.memory-playing {
+
+.grid {
+  perspective: 1000px;
   display: grid;
-  grid-template-columns: auto auto auto;
-  grid-template-rows: auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   border: 1px solid rgba(146, 15, 146, 0.925);
   width: 650px;
   height: 650px;
-  margin: auto;
-  visibility: hidden;
-
-
-}
-
-#hidden {
-
-  margin-top: auto;
-  margin-bottom: auto;
-  color: rgba(189, 18, 189, 0.925);
-}
-
-
-
-.memory-cards {
-  display: grid;
   justify-content: center;
 
-  background-color: rgba(189, 18, 189, 0.925);
-  border: 1px solid rgba(109, 11, 109, 0.925);
-  cursor: pointer;
+
+
+
 }
 
-.memory-cards:hover {
-  box-shadow: inset 0px 0px 0px 1px rgba(253, 28, 253, 0.925);
-  ;
-  background-color: rgba(189, 18, 189, 0.582);
-  border: rgba(252, 100, 252, 0.925);
-  1px solid;
+#game {
+  visibility: hidden;
 }
 
+.card {
+
+  margin: 5px;
+  background-color: red;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 200px;
+  width: 150px;
+  position: relative;
+  transition: all .4s linear;
+  transform-style: preserve-3d;
+  margin: 5px;
+
+
+}
+
+
+
+.card,
+.back,
+.front {
+  height: 150px;
+  width: 130px;
+}
+
+.back,
+.front {
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.front {
+  z-index: 2;
+  background: purple no-repeat center center / contain;
+}
+
+.back {
+  transform: rotateY(180deg);
+  background-color: yellow;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.selected {
+  transform: rotateY(180deg);
+}
+
+.match .front {
+  background: #6589F9 !important;
+}
 
 
 .show {
