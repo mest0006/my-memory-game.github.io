@@ -52,7 +52,7 @@ $levels[0].addEventListener("click", function (e) {
 $levels[1].addEventListener("click", function (e) {
   $container.setAttribute("Style", "display: none;")
   $normal.setAttribute("Style", "display: grid;")
-  tracker.pairs = 7
+  tracker.pairs = 4
   for (const normalCard of normalCards) {
     normal.push(`<div class="cards back" data-framework="${normalCard}"><i class="fas fa-${normalCard}"></i></div>`)
   }
@@ -63,7 +63,7 @@ $levels[1].addEventListener("click", function (e) {
 $levels[2].addEventListener("click", function (e) {
   $container.setAttribute("Style", "display: none;")
   $hard.setAttribute("Style", "display: grid;")
-  tracker.pairs = 14
+  tracker.pairs = 16
   for (const hardCard of hardCards) {
     hard.push(`<div class="cards back" data-framework="${hardCard}"><i class="fas fa-${hardCard}"></i></div>`)
   }
@@ -122,11 +122,7 @@ function card () {
   tracker.firstCardFlipped = false
   tracker.secondCardFlipped = false
 
-  setTimeout(() => {
-    var cards = document.querySelectorAll('.cards')
-    cards.classList.add('bounce-1')
 
-  }, 1010)
 }
 
 function Reset () {
@@ -166,8 +162,12 @@ function wrong () {
 
 function winner () {
   if (tracker.pairs == 0) {
+    $easy.classList.add('spin')
+    $normal.classList.add('spin')
+    $hard.classList.add('spin')
     setTimeout(() => {
       $gameWinner.setAttribute("Style", "display: flex;")
+
     }, 300)
 
 
