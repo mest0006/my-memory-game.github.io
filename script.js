@@ -1,159 +1,187 @@
+const $container = document.getElementById('container')
+const $easy = document.getElementById('easy')
+const $normal = document.getElementById('normal')
+const $hard = document.getElementById('hard')
+const $gameWinner = document.getElementById('win')
+var $levels = document.getElementsByTagName('button')
 
-let $buttons = document.getElementById('buttons')
+const icons = ['fan', 'fan', 'apple-alt', 'apple-alt', 'code-branch', 'code-branch', 'robot', 'robot', 'desktop', 'desktop', 'file-code', 'file-code', 'camera', 'camera', 'crown', 'crown']
 
-let $h1 = document.getElementById('h1')
+function shuffle (x) {
+  var currentIndex = x.length, temporaryValue, randomIndex;
 
-
-
-
-
-let buttons = {
-  Easy: [],
-  Medium: [],
-  Hard: []
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = x[currentIndex];
+    x[currentIndex] = x[randomIndex];
+    x[randomIndex] = temporaryValue;
+  }
+  return x
 }
 
 
-const list = Object.keys(buttons)
+const easyCards = shuffle(icons.slice(0, 6))
+const normalCards = shuffle(icons.slice(0, 8))
+const hardCards = shuffle(icons)
+const easy = []
+const normal = []
+const hard = []
+const gameWinner = []
 
-$buttons.innerHTML = list.map(function (button) {
-  return `  
-  <button class="button" data-button="${button}">${button}</button>`
-}).join('')
+let clickDisabled = false;
 
-
-$buttons.addEventListener('click', function (e) {
-  if (e.target.classList.contains('button')) {
-    grid.classList.add('show')
-    $buttons.classList.add('hidden')
-    $h1.classList.add('hidden')
+let tracker = {
+  firstCardFlipped: false,
+  secondCardFlipped: false,
+  firstCard: '',
+  secondCard: '',
+  pairs: 100
+}
+$levels[0].addEventListener("click", function (e) {
+  $container.setAttribute("Style", "display: none;")
+  $easy.setAttribute("Style", "display: grid;")
+  tracker.pairs = 3
+  for (const easyCard of easyCards) {
+    easy.push(`<div class="cards back" data-framework="${easyCard}"><i class="fas fa-${easyCard}"></i></div>`)
   }
 
+  $easy.innerHTML = easy.join(' ')
 })
-const cardsArray = [
-  {
-    name: 'andriod',
-    img: 'img/andriod.png',
-  },
-  {
-    name: 'apple',
-    img: 'img/apple.png',
-  },
-  {
-    name: 'github',
-    img: 'img/github.png',
-  },
-  {
-    name: 'java',
-    img: 'img/java.png',
-  },
-  {
-    name: 'react',
-    img: 'img/react.png',
-  },
-  {
-    name: 'sass',
-    img: 'img/sass.png',
-  },
-  {
-    name: 'snapchat',
-    img: 'img/snapchat.png',
-  }
-  ,
-  {
-    name: 'windows',
-    img: 'img/windows.png',
-  }
-]
 
-var gameGrid = cardsArray.concat(cardsArray).sort(function () {
-  return 0.5 - Math.random();
-});
-
-var firstGuess = '';
-var secondGuess = '';
-var count = 0;
-var previousTarget = null;
-var delay = 1200;
-
-var game = document.getElementById('game');
-var grid = document.createElement('section');
-grid.setAttribute('class', 'grid');
-game.appendChild(grid);
-
-gameGrid.forEach(function (item) {
-  var name = item.name,
-    img = item.img;
-
-
-  var card = document.createElement('div');
-  card.classList.add('card');
-  card.dataset.name = name;
-
-  var front = document.createElement('div');
-  front.classList.add('front');
-
-  var back = document.createElement('div');
-  back.classList.add('back');
-  back.style.backgroundImage = 'url(' + img + ')';
-
-  grid.appendChild(card);
-  card.appendChild(front);
-  card.appendChild(back);
-});
-
-var match = function match () {
-  var selected = document.querySelectorAll('.selected');
-  selected.forEach(function (card) {
-    card.classList.add('match');
-  });
-};
-
-var resetGuesses = function resetGuesses () {
-  firstGuess = '';
-  secondGuess = '';
-  count = 0;
-  previousTarget = null;
-
-  var selected = document.querySelectorAll('.selected');
-  selected.forEach(function (card) {
-    card.classList.remove('selected');
-  });
-};
-
-grid.addEventListener('click', function (event) {
-
-  var clicked = event.target;
-
-  if (clicked.nodeName === 'SECTION' || clicked === previousTarget || clicked.parentNode.classList.contains('selected') || clicked.parentNode.classList.contains('match')) {
-    return;
+$levels[1].addEventListener("click", function (e) {
+  $container.setAttribute("Style", "display: none;")
+  $normal.setAttribute("Style", "display: grid;")
+  tracker.pairs = 7
+  for (const normalCard of normalCards) {
+    normal.push(`<div class="cards back" data-framework="${normalCard}"><i class="fas fa-${normalCard}"></i></div>`)
   }
 
-  if (count < 2) {
-    count++;
-    if (count === 1) {
-      firstGuess = clicked.parentNode.dataset.name;
-      console.log(firstGuess);
-      clicked.parentNode.classList.add('selected');
-    } else {
-      secondGuess = clicked.parentNode.dataset.name;
-      console.log(secondGuess);
-      clicked.parentNode.classList.add('selected');
+  $normal.innerHTML = normal.join(' ')
+})
+
+$levels[2].addEventListener("click", function (e) {
+  $container.setAttribute("Style", "display: none;")
+  $hard.setAttribute("Style", "display: grid;")
+  tracker.pairs = 14
+  for (const hardCard of hardCards) {
+    hard.push(`<div class="cards back" data-framework="${hardCard}"><i class="fas fa-${hardCard}"></i></div>`)
+  }
+
+  $hard.innerHTML = hard.join(' ')
+})
+
+function cardFlipper (e) {
+  $icon = e.target.closest('.back')
+
+  if ($icon && !tracker.secondCardFlipped) {
+    setTimeout(() => {
+      e.target.classList.add('flip')
+      e.target.classList.remove('unflip')
+    }, 125)
+
+    setTimeout(() => {
+      $icon.classList.remove('back')
+      $icon.classList.add('cards')
+    }, 275)
+
+
+    if (!tracker.firstCardFlipped) {
+      tracker.firstCardFlipped = true
+      tracker.firstCard = $icon
     }
 
-    if (firstGuess && secondGuess) {
-      if (firstGuess === secondGuess) {
-        setTimeout(match, delay);
-      }
-      setTimeout(resetGuesses, delay);
+    else {
+      tracker.secondCardFlipped = true
+      tracker.secondCard = $icon
+
+      match()
     }
-    previousTarget = clicked;
   }
-});
+  console.log(tracker.firstCard)
+  console.log(tracker.secondCard)
+}
+
+function match () {
+  if (tracker.firstCard.dataset.framework === tracker.secondCard.dataset.framework) {
+    card()
+    tracker.pairs--
+    winner()
+  }
+
+  else {
+    wrong()
+  }
+}
+
+function card () {
+  tracker.firstCard.removeEventListener("click", cardFlipper)
+  tracker.secondCard.removeEventListener("click", cardFlipper)
+  tracker.firstCard.classList.add('match')
+  tracker.secondCard.classList.add('match')
+  tracker.firstCardFlipped = false
+  tracker.secondCardFlipped = false
+
+  setTimeout(() => {
+    var cards = document.querySelectorAll('.cards')
+    cards.classList.add('bounce-1')
+
+  }, 1010)
+}
+
+function Reset () {
+  tracker.firstCardFlipped = false
+  tracker.secondCardFlipped = false
+  tracker.firstCard.classList.add('cards')
+  tracker.secondCard.classList.add('cards')
+  tracker.firstCard.classList.add('back')
+  tracker.secondCard.classList.add('back')
+  tracker.firstCard.classList.remove('flip')
+  tracker.secondCard.classList.remove('flip')
+  tracker.firstCard.classList.remove('unflip')
+  tracker.secondCard.classList.remove('unflip')
+}
+
+function wrong () {
+  tracker.firstCard.classList.remove('flip')
+  tracker.secondCard.classList.remove('flip')
+  setTimeout(() => {
+    tracker.firstCard.classList.add('unflip')
+    tracker.secondCard.classList.add('unflip')
+  }, 850)
+  setTimeout(() => {
+    tracker.firstCard.classList.add('back')
+    tracker.secondCard.classList.add('back')
+    tracker.firstCard.classList.remove('cards')
+    tracker.secondCard.classList.remove('cards')
+  }, 1000)
+
+
+  setTimeout(() => {
+
+    Reset()
+  }, 1035)
+}
+
+
+function winner () {
+  if (tracker.pairs == 0) {
+    setTimeout(() => {
+      $gameWinner.setAttribute("Style", "display: flex;")
+    }, 300)
+
+
+  }
+}
 
 
 
 
+$levels[3].addEventListener("click", function (e) {
+  location.reload();
+})
 
 
-
+$easy.addEventListener('click', cardFlipper);
+$normal.addEventListener('click', cardFlipper);
+$hard.addEventListener('click', cardFlipper);

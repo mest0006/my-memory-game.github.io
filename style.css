@@ -1,126 +1,277 @@
 * {
-
-
   box-sizing: border-box;
 }
 
+html {
+  display: table;
+  margin: auto;
+  height: 100%;
+}
+
 body {
+  margin: 0px, auto;
+  text-align: center;
+  height: 100%;
   display: grid;
   justify-content: center;
-  align-content: center;
-  display: grid;
+  align-items: center;
   height: 100vh;
-
-
+  width: 100vw;
+  font-family: Verdana, sans-serif;
   background-color: aliceblue;
 }
 
+#container {
+  padding: 2rem;
+  background-color: lavender;
+
+}
+
+h2 {
+
+  font-weight: 400;
+}
+
 h1 {
-  margin: auto;
-  padding: 2%;
-  text-align: center;
-  visibility: visible;
+  color: violet;
+  font-size: 3rem;
+  margin: 0px;
 }
 
-.button {
+i {
+  font-size: 4rem;
+  margin: 0px;
+}
 
-  font-family: 'arial';
+button {
+
+  justify-items: center;
+  align-items: center;
   padding: 1rem 1.5rem;
-  background-color: #17a2b8;
-  border-color: #17a2b8;
+  display: inline;
+  background-color: #6AFFFE;
   border-radius: 10%;
-  color: #fff;
+  color: #333333;
   cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.buttons {
-
-  visibility: visible;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
+  font-size: 20px;
+  font-weight: 700;
+  padding: 1rem;
+  margin: 1rem;
 }
 
 
-.grid {
+#easy {
+  display: none;
+
   perspective: 1000px;
-  display: grid;
+  justify-items: center;
+  align-items: center;
+  position: fixed;
+  grid-gap: 2px;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 600px;
+  height: 600px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+#normal {
+  display: none;
+  perspective: 1000px;
+  justify-items: center;
+  align-items: center;
+  position: fixed;
+  grid-gap: 5px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  border: 1px solid rgba(146, 15, 146, 0.925);
-  width: 650px;
-  height: 650px;
+  grid-template-rows: 1fr 1fr 1fr;
+  width: 600px;
+  height: 600px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+#hard {
+  display: none;
+  perspective: 1000px;
+  justify-items: center;
+  align-items: center;
+  position: fixed;
+  grid-gap: 5px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  width: 600px;
+  height: 600px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+
+}
+
+
+#win {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
   justify-content: center;
-
-
-
-
-}
-
-#game {
-  visibility: hidden;
-}
-
-.card {
-
-  margin: 5px;
-  background-color: red;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  height: 200px;
-  width: 150px;
-  position: relative;
-  transition: all .4s linear;
-  transform-style: preserve-3d;
-  margin: 5px;
-
-
+  position: fixed;
+  bottom: 25%;
+  right: 0;
+  width: 100%;
+  height: 40%;
+  background-color: white;
+  color: purple;
+  font-size: 3rem;
+  font-weight: bold;
+  animation: fadeIn 0.4s forwards linear;
 }
 
 
+.cards {
 
-.card,
-.back,
-.front {
+
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
   height: 150px;
   width: 130px;
-}
-
-.back,
-.front {
-  position: absolute;
-  backface-visibility: hidden;
-}
-
-.front {
-  z-index: 2;
-  background: purple no-repeat center center / contain;
+  border: 2px solid white;
+  border-radius: 0.5rem;
+  background-color: pink;
+  box-shadow: -5px 5px 10px #333333;
 }
 
 .back {
-  transform: rotateY(180deg);
-  background-color: yellow;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
+
+  height: 150px;
+  width: 130px;
+  background-image:
+    repeating-linear-gradient(45deg,
+      purple,
+      purple 10px,
+      white 10px,
+      white 20px
+      /* determines size */
+    );
+  background-size: 50px 50px;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  color: rgba(0, 0, 0, 0);
+  box-shadow: -5px 5px 10px #333333;
 }
 
-.selected {
-  transform: rotateY(180deg);
+.back:hover {
+
+  transform: scale(1.05, 1.05);
+  box-shadow: -5px 5px 10px #333333;
 }
 
-.match .front {
-  background: #6589F9 !important;
+.match {
+  opacity: 0.5;
+  background-color: pink;
+  transition: opacity 0.75s ease-in-out;
+}
+
+.flip {
+
+  animation: Flip 0.275s forwards linear;
+}
+
+.unflip {
+
+  animation: cardUnFlip 0.275s forwards linear;
+}
+
+@keyframes Flip {
+  0% {
+
+    transform: rotateZ(0deg) rotateY(180deg);
+  }
+
+  50% {
+
+    transform: rotateZ(-10deg) rotateY(90deg);
+  }
+
+  100% {
+
+    transform: rotateZ(0deg) rotateY(0deg);
+  }
 }
 
 
-.show {
-  visibility: visible;
+@keyframes cardUnFlip {
+  0% {
+
+    transform: rotateZ(0deg) rotateY(0deg);
+  }
+
+  50% {
+
+    transform: rotateZ(-10deg) rotateY(90deg);
+  }
+
+  100% {
+
+    transform: rotateZ(0deg) rotateY(180deg);
+  }
 }
 
-.hidden {
-  visibility: hidden;
+
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+
+    transform: translateY(40px);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.bounce-1 {
+  animation: bounce-1 500ms forwards;
+}
+
+@keyframes bounce-1 {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-100px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
