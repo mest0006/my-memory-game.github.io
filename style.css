@@ -284,11 +284,10 @@ button {
     align-items: center;
     position: fixed;
     grid-gap: 2px;
-
     grid-template-columns: 1fr 1fr;
    
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     top: 0;
     left: 0;
     bottom: 0;
