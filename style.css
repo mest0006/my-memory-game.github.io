@@ -277,11 +277,10 @@ button {
   #easy,
   #normal,
   #hard {
-width:200px;
+  width:200px;
     hight:200px
     grid-template-columns: repeat(2, auto)
-        grid-gap: 1px;
-  }
+       
 
   .container {
     flex-direction: column;
