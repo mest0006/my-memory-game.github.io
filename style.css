@@ -277,8 +277,10 @@ button {
   #easy,
   #normal,
   #hard {
-
+width:200px;
+    hight:200px
     grid-template-columns: repeat(2, auto)
+        grid-gap: 1px;
   }
 
   .container {
@@ -350,8 +352,8 @@ button {
 
   .back {
 
-    height: 150px;
-    width: 130px;
+    height: 120px;
+    width: 1200px;
     background-image:
       repeating-linear-gradient(45deg,
         purple,
