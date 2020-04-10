@@ -277,11 +277,24 @@ button {
   #easy,
   #normal,
   #hard {
-  width:200px;
-    hight:200px
-    grid-template-columns: repeat(2, auto)
-       
+ 
+    display: none;
+    perspective: 1000px;
+    justify-items: center;
+    align-items: center;
+    position: fixed;
+    grid-gap: 2px;
 
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    width: 450px;
+    height: 450px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: 2px;
+  }
   .container {
     flex-direction: column;
     align-items: center;
