@@ -4,7 +4,7 @@ const $normal = document.getElementById('normal')
 const $hard = document.getElementById('hard')
 const $gameWinner = document.getElementById('win')
 var $levels = document.getElementsByTagName('button')
-var $google = document.quearyselector('.google_translate_element')
+var $google = document.getElementById('google_translate_element')
 
 const icons = ['fan', 'fan', 'apple-alt', 'apple-alt', 'code-branch', 'code-branch', 'robot', 'robot', 'desktop', 'desktop', 'file-code', 'file-code', 'camera', 'camera', 'crown', 'crown']
 
