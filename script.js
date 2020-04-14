@@ -4,6 +4,7 @@ const $normal = document.getElementById('normal')
 const $hard = document.getElementById('hard')
 const $gameWinner = document.getElementById('win')
 var $levels = document.getElementsByTagName('button')
+var $google = document.quearyselector('.google_translate_element')
 
 const icons = ['fan', 'fan', 'apple-alt', 'apple-alt', 'code-branch', 'code-branch', 'robot', 'robot', 'desktop', 'desktop', 'file-code', 'file-code', 'camera', 'camera', 'crown', 'crown']
 
@@ -39,6 +40,7 @@ let tracker = {
   pairs: 100
 }
 $levels[0].addEventListener("click", function (e) {
+  $google.setAtribute("Style", "display: none;")
   $container.setAttribute("Style", "display: none;")
   $easy.setAttribute("Style", "display: grid;")
   tracker.pairs = 3
@@ -50,6 +52,7 @@ $levels[0].addEventListener("click", function (e) {
 })
 
 $levels[1].addEventListener("click", function (e) {
+$google.setAtribute("Style", "display: none;")
   $container.setAttribute("Style", "display: none;")
   $normal.setAttribute("Style", "display: grid;")
   tracker.pairs = 4
@@ -61,6 +64,7 @@ $levels[1].addEventListener("click", function (e) {
 })
 
 $levels[2].addEventListener("click", function (e) {
+  $google.setAtribute("Style", "display: none;")
   $container.setAttribute("Style", "display: none;")
   $hard.setAttribute("Style", "display: grid;")
   tracker.pairs = 16
