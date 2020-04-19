@@ -1,8 +1,8 @@
-# Memory
+# Memory Final project For Introduction to javascrpit
 
 ## Objective
 
-For the final project, you will be demonstrating your cumulative understanding of HTML, CSS, and JavaScript to create an interactive game of Memory.
+For one of my  final project, i wasa asked to demonstrate my  understanding of HTML, CSS, and JavaScript and create an interactive game of Memory.
 
 ## Game Play
 
